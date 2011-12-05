@@ -1,0 +1,22 @@
+#!/bin/sh
+
+#
+# Database backup utility
+# Copyright (c) 2007 IDILES SYSTEMS
+#
+# Run this utility at least once a month to backup database. Use cron to run
+# this script automatically.
+#
+# NOTICE: Database user name and password are hardcoded into the script. Update
+# this information when needed.
+#
+
+MYSQLDUMP=`which mysqldump`
+BACKUPDIR='/opt/idiles/dragonfly/backups/db'
+
+mkdir -p $BACKUPDIR
+
+DUMPFILE="dragonfly-`date +%Y%m%d-%H%M`.dump"
+$MYSQLDUMP --user=dragonfly --password=dragonfly dragonfly > $BACKUPDIR/$DUMPFILE
+gzip $BACKUPDIR/$DUMPFILE
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:py="http://genshi.edgewall.org/"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <xi:include href="adminmaster.html" />
+
+<head>
+    <title>Service Index - Idiles Dragonfly</title>
+</head>
+
+<body>
+    <h1>Service Index</h1>
+
+    <table cellpadding="0" cellspacing="0" class="simple">
+    <tr>
+        <th></th>
+        <th>Name (URI)</th>
+        <th>Title, Version</th>
+        <th>Status</th>
+        <th>Started</th>
+        <th>Load</th>
+        <th>ART</th>
+        <th>RPS</th>
+        <th>Requests</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr py:for="i, s in enumerate(services)">
+        <td py:content="'%d.' % (i+1)" />
+        <td py:content="s.name" style="font-weight: bold;" />
+        <td py:content="s.title" />
+        <td>
+            <span style="color: ${s.status == 'Running' and 'green' or 'red'}" 
+            py:content="s.status" />
+        </td>
+        <td class="centered-text">
+            <span py:content="s.started" />
+        </td>
+        <td style="text-align:right;">
+            <span py:content="s.load" /> %
+        </td>
+        <td py:content="s.avgduration" style="text-align: right">
+        </td>
+        <td py:content="s.rps" style="text-align: right">
+        </td>
+        <td py:content="s.requests" style="text-align: right">
+        </td>
+        <td>
+            <input type="submit" name="RESTART" value="Restart" />
+        </td>
+        <td>
+            <input type="submit" name="TOGGLE" value="Disable" />
+        </td>
+        <td>
+            <a href="service/${s.name}">Statistics</a>
+        </td>
+        <td>
+            <a href="service/${s.name}">Security</a>
+        </td>
+    </tr>
+    </table>
+</body>
+</html>

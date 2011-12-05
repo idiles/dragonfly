@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:py="http://genshi.edgewall.org/"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <xi:include href="adminmaster.html" />
+
+<head>
+    <title>Service Info - Idiles Dragonfly</title>
+</head>
+
+<body>
+    <h1 py:content="service.title"></h1>
+
+    <table cellpadding="0" cellspacing="0" class="simple">
+    <tr>
+        <th>Action</th>
+        <th>HTTP Status</th>
+        <th>Host</th>
+        <th>Duration</th>
+        <th>Data</th>
+    </tr>
+    <tr py:for="i in log" class="${i.http_status != 200 and 'httperror'}">
+        <td py:content="i.action" />
+        <td py:content="i.http_status" />
+        <td py:content="i.host" />
+        <td py:content="'%.5f' % i.duration" />
+        <td py:content="i.date" />
+    </tr>
+    </table>
+
+    <xi:include href="../_pages.html" />
+</body>
+</html>

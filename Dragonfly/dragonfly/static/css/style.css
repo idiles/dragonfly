@@ -1,0 +1,72 @@
+body
+{
+    font-family: Sans, sans-serif;
+    font-size: 12px;
+}
+
+hr
+{
+    border: none;
+    border-bottom: 1px solid #AAA;
+}
+
+h1
+{
+    font-size: 18px;
+}
+
+table.simple
+{
+    border-collapse: collapse;
+}
+
+table.simple td, table.simple th
+{
+    padding: 4px;
+    border: 1px solid #EEE;
+}
+
+table.simple th
+{
+    font-weight: bold;
+    background-color: #F5F5F5;
+}
+
+.centered-text
+{
+    text-align: center;
+}
+
+.httperror
+{
+    color: red;
+}
+
+#footer
+{
+    text-align: center;
+    font-size: 10px;
+    color: #AAA;
+    margin-top: 20px;
+}
+
+/*
+ * Pages
+ */
+
+p.pages, div.pages
+{
+    padding: 3px;
+}
+
+p.pages a, div.pages a
+{
+    text-decoration: none;
+    color: #777;
+}
+
+p.pages a:hover, div.pages a:hover
+{
+    color: #000;
+}
+

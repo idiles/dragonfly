@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:py="http://genshi.edgewall.org/"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    py:strip="">
+
+<?python
+    from turbogears import identity
+?>
+
+<head py:match="head" py:attrs="select('@*')">
+    <meta py:replace="select('*')" />
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+    <link href="/static/images/favicon.ico" type="image/x-icon"
+        rel="shortcut icon" />
+    <link rel="stylesheet" type="text/css" media="screen" 
+        href="/static/css/style.css" />
+</head>
+
+<body py:match="body" py:attrs="select('@*')">
+
+    <h1 style="font-size: 22px; color: #8a9e06; font-weight: normal;">Idiles Dragonfly</h1>
+    <div style="margin-top: -15px; margin-bottom: 10px; font-style: italic; color: #AAA;
+    font-size: 10px;">ESB for Python/HTTP web services</div>
+    <hr />
+
+    <div id="content" style="height: 100%;">
+        <div py:replace="select('*|text()')" />
+    </div>
+
+    <div id="footer">&copy; 2008 Idiles Systems. All rights reserved.
+    </div>
+</body>
+
+</html>

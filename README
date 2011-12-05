@@ -1,0 +1,12 @@
+DRAGONFLY ESB
+
+Awesome SOA ESB for Python/TurboGears (now outdated)
+====================================================
+
+WARNING: This code is outdated because of dead TurboGears framework and
+should be used for learning purposes only.
+
+Dragonfly is a SOA framework for Python. It was successfully used on a few
+commercial projects, but now it should be ported to modern frameworks like
+Django or Pyramid.
+

@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# -*- coding: UTF-8 -*-
+#
+# Copyright (c) 2007 IDILES SYSTEMS, UAB
+#
+# Starts/stops/restarts website server
+
+if [[ $UID != "0" ]]; then
+    echo "Only root can do this"
+    exit 1
+fi
+
+COMMAND=$1
+
+H="/opt/idiles/dragonfly"
+WEB="$H/Dragonfly"
+START_SCRIPT="start-dragonfly.py"
+LOG="$H/debug/dragonfly-debug.log"
+DATE=`date`
+
+PATH=/usr/local/bin:$PATH
+PYTHON=`which python2.5`
+
+start_app()
+{
+    echo "Starting web application..."
+
+    mkdir -p $H/debug
+
+    if [[ $2 ]]; then
+        PENV=$2
+    else
+        PENV='prod.cfg'
+    fi
+
+    cd $WEB
+    exec $PYTHON $WEB/$START_SCRIPT $PENV 2>&1 >>$LOG & disown
+    echo "$DATE *** Started ***" >> $LOG
+    return
+    return
+}
+
+stop_app()
+{
+    echo "Stopping web application..."
+    pkill -f $START_SCRIPT
+    echo "$DATE *** Stopped ***" >> $LOG
+    return
+}
+
+case $COMMAND in
+    start)
+        start_app
+        ;;
+
+    stop)
+        stop_app
+        ;;
+
+    restart)
+        stop_app
+        start_app
+        ;;
+
+    *)
+        echo "Usage: app-admin (start|stop|restart)"
+        exit 0
+        ;;
+esac
+
